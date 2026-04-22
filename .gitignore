@@ -1,0 +1,25 @@
+/its_multi_agent/backend/knowledge/.venv/
+# Python 虚拟环境（核心必加）
+.venv/
+venv/
+env/
+
+# 项目编译缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE 配置文件
+.idea/
+.vscode/
+*.iml
+
+# 数据库、临时大文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
