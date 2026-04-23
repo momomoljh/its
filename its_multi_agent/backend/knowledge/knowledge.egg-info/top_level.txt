@@ -1,5 +1,4 @@
 api
-cli
 config
 repositories
 schemas

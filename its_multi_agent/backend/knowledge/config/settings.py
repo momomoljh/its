@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     CHUNK_OVERLAP: int = 200
 
     TOP_ROUGH: int = 50
-    TOPFINAL: int = 5
+    TOP_FINAL: int = 5
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(_project_dir,".env"),

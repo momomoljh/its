@@ -12,3 +12,4 @@ scikit-learn
 jieba
 unstructured
 markdown
+python-multipart

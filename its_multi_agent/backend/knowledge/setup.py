@@ -18,6 +18,7 @@ setup(
         "scikit-learn",
         "jieba",
         "unstructured",
-        "markdown"
+        "markdown",
+        "python-multipart"
     ],
 )
