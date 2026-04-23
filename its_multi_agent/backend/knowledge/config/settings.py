@@ -17,6 +17,7 @@ class Settings(BaseSettings):
 
     CRAWL_OUTPUT_DIR: str = os.path.join(_project_dir,"data","crawl")
 
+    TMP_MD_FOLDER_PATH: str = os.path.join(_project_dir,"data","tmp")
     MD_FOLDER_PATH: str = CRAWL_OUTPUT_DIR
 
     CHUNK_SIZE: int = 3000
