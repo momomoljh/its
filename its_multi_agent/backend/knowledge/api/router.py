@@ -1,21 +1,24 @@
 import os.path
 import logging
 import shutil
-from fileinput import filename
+
 
 import aiofiles
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 from fastapi import APIRouter, File, UploadFile, HTTPException
-from schemas.schema import UploadResponse
+from schemas.schema import UploadResponse, QueryRequest,QueryResponse
 from repositories.file_repository import FileRepository
-import tempfile
 from config.settings import Settings
 from fastapi.concurrency import run_in_threadpool
+from services.query_service import QueryService
+from services.retrival_service import RetrivalService
 from services.ingestion.ingestion_processor import IngestionProcessor
 router = APIRouter()
 file_repository = FileRepository()
 ingestion_processor = IngestionProcessor()
+query_service = QueryService()
+retrival_service = RetrivalService()
 @router.post("/upload", response_model=UploadResponse,summary="知识库摘要上传")
 async def upload_file(file: UploadFile = File(...)):
     try:
@@ -47,3 +50,34 @@ async def upload_file(file: UploadFile = File(...)):
             logger.info(f"临时文件：:{temp_file_path}已删除")
 
 
+@router.post("/query", response_model=QueryResponse,summary="查询知识库")
+async def upload_file(request: QueryRequest):
+    """
+        查询知识库
+        Args:
+            request: 用户的输入请求
+
+        Returns:
+            QueryResponse： 模型的结果以及原始问题
+
+        """
+    try:
+        # 1. 判断用户问题
+        user_question = request.question
+        if not user_question:
+            raise HTTPException(status_code=500, detail="查询问题不存在")
+
+        # 2. 调用检索器的检索方法
+        retrieval_context = retrival_service.retrival(user_question)
+
+        # 3. 调用查询器的查询方法
+        answer = query_service.generate_answer(user_question, retrieval_context)
+
+        # 4. 封装到响应数据模型
+        return QueryResponse(
+            query=user_question,
+            answer=answer
+        )
+    except Exception as e:
+        logger.error(f"调用查询知识库服务失败:原因:{str(e)}")
+        raise HTTPException(status_code=500, detail="服务内部出现异常")

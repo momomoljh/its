@@ -9,3 +9,13 @@ class UploadResponse(BaseModel):
     message: str
     file_name: str
     chunks_added: int
+
+
+class QueryResponse(BaseModel):
+
+    query: str
+    answer: str
+
+
+class QueryRequest(BaseModel):
+    query: str
