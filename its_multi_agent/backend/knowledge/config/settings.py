@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     BASE_URL: str = os.environ.get("BASE_URL")
     MODEL: str = os.environ.get("MODEL")
     EMBEDDING_MODEL: str = os.environ.get("EMBEDDING_MODEL")
-
+    os.environ["DASHSCOPE_API_KEY"] = "sk-9464965c0c1d4d95b509babec523d048"
     KNOWLEDGE_BASE_URL: str = os.environ.get("KNOWLEDGE_BASE_URL")
 
     _current_dir = os.path.abspath(os.path.dirname(__file__))

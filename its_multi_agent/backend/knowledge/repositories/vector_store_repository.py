@@ -6,6 +6,7 @@ from langchain_core.documents import Document
 
 from config.settings import settings
 from langchain_openai.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import  DashScopeEmbeddings
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -15,10 +16,14 @@ class VectorStoreRepository:
     """
     def __init__(self):
         self.embedding = OpenAIEmbeddings(
-            model=settings.EMBEDDING_MODEL,
-            openai_api_key=settings.API_KEY,
-            openai_api_base=settings.BASE_URL,
+            model="text-embedding-3-large",
+            openai_api_key="sk-bmb4c3c818b5afa6636ea926210e5c7c6deca5a7ebcRzfYQ",
+            openai_api_base="https://api.gptsapi.net/v1",
         )
+        # self.embedding = DashScopeEmbeddings(
+        #     model="qwen3-vl-embedding",
+        #
+        # )
         """
         创建向量数据库实例
         """

@@ -1,7 +1,8 @@
 import os
-from typing import Any, Dict, List, re
+import re
+from typing import Any, Dict, List
 
-from numba.core.runtime.nrtdynmod import meminfo_data_ty
+
 
 
 class MarkdownUtils:
@@ -26,7 +27,7 @@ class MarkdownUtils:
             if filename.endswith('.md'):
                 match = filename_pattern.match(filename)
                 if match:
-                    title = match.group(1)
+                    title = match.group(2)
                 else:
                     title = os.path.splitext(filename)[0].strip()
                 md_metadata.append({
@@ -34,5 +35,12 @@ class MarkdownUtils:
                     'title': title,
                 })
         return md_metadata
-
     @staticmethod
+    def extract_title(file_path: str) -> str:
+        filename = os.path.basename(file_path)
+        filename_pattern = re.compile(r'(.+?)-(.*?)\.md')
+        match = filename_pattern.match(filename)
+        if match:
+            return match.group(2).strip()
+        else:
+            return os.path.splitext(filename)[0].strip()

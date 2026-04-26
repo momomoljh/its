@@ -4,6 +4,7 @@ from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from repositories.vector_store_repository import VectorStoreRepository
 from langchain_community.vectorstores.utils import filter_complex_metadata
+from utils.markdown_utils import MarkdownUtils
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -44,6 +45,8 @@ class IngestionProcessor:
         except Exception as e:
             logger.error(f"文件{md_path}没有加载到 原因：{str(e)}")
             raise Exception(f"文件{md_path}没有加载到 原因：{str(e)}")
+        for document in documents:
+            document.metadata["title"] = MarkdownUtils.extract_title(md_path)
         #2. 切分文档块列表 1.防止token限制 2.内容过多 噪音 -> 上下文参考不准确 回复质量低 (2次对chunk降噪(1.只提取 2.总结 )  利用嵌入模型二次优化chunk)
         #检索尽量多路召回(改写查询).... 1.
         #去重
@@ -51,7 +54,7 @@ class IngestionProcessor:
         #动态切分
         final_documents_chunks = []
         for doc in documents:
-            if len(doc.page_content) < 1500:
+            if len(doc.page_content) < 3000:
                 final_documents_chunks.append(doc)
             else:
                 document_chunks_lists = self.document_spliter.split_documents(documents)
