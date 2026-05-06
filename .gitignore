@@ -1,4 +1,6 @@
 /its_multi_agent/backend/knowledge/.venv/
+/its_multi_agent/backend/knowledge/.env
+/its_multi_agent/backend/openai_agent_sdk_toturial/.env
 # Python 虚拟环境（核心必加）
 .venv/
 venv/

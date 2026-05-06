@@ -11,7 +11,7 @@ class QueryService():
         self.llm = ChatOpenAI(
             model_name = settings.MODEL,
             openai_api_key = settings.API_KEY,
-            openai_api_base = settings.BASE_URL,
+            temperature = 0
         )
 
     def generate_answer(self, user_question:str, retrival_context: List[Document]) -> str:
