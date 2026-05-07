@@ -13,9 +13,9 @@ class UploadResponse(BaseModel):
 
 class QueryResponse(BaseModel):
 
-    query: str
+    question: str
     answer: str
 
 
 class QueryRequest(BaseModel):
-    query: str
+    question: str

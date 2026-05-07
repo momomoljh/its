@@ -11,6 +11,7 @@ class QueryService():
         self.llm = ChatOpenAI(
             model_name = settings.MODEL,
             openai_api_key = settings.API_KEY,
+            openai_api_base = settings.BASE_URL,
             temperature = 0
         )
 

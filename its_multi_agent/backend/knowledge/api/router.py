@@ -75,7 +75,7 @@ async def upload_file(request: QueryRequest):
 
         # 4. 封装到响应数据模型
         return QueryResponse(
-            query=user_question,
+            question=user_question,
             answer=answer
         )
     except Exception as e:
