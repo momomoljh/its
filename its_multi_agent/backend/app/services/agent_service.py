@@ -50,7 +50,7 @@ class MultiAgentService:
          clean_result = re.sub(r'\n+', '\n', agent_result)
          # 6. 存储历史对话
          chat_history.append({"role": "assistant","content":clean_result})
-         session_service.save_history(user_id, session_id, clean_result)
+         session_service.save_history(user_id, session_id, chat_history)
       except Exception as e:
          # 记录错误日志
          logger.error(f"AgentService.process_query执行出错: {str(e)}")
