@@ -56,17 +56,17 @@ amapuri://drive/takeTaxi?sourceApplication=ampplatform&slat=30.239899&slon=120.2
 
 **改写为网页版（直接拼接坐标）：**
 ```
-https://www.amap.com/dir/{slon},{slat}/{dlon},{dlat}
+https://www.amap.com/ssr/dir?type=0&policy=10&flon={slon}&flat={slat}&dlon={dlon}&dlat={dlat}&dname={dname}&fname={sname}
 ```
 
-**示例**：原始链接中的参数为 `slon=120.218850, slat=30.239899, dlon=120.204373, dlat=30.263438`
+**示例**：原始链接中的参数为 `slon=120.218850, slat=30.239899, dlon=120.204373, dlat=30.263438, dname="利一家园", sname = "奥体印象城"`
 
 改写结果：
 ```
-https://www.amap.com/dir/120.218850,30.239899/120.204373,30.263438
+https://www.amap.com/ssr/dir?type=0&policy=10&flon={120.218850}&flat={30.239899}&dlon={120.204373}&dlat={30.263438}&dname={利一家园}&fname={奥体印象城}
 ```
 
-**注意**：经纬度坐标不能包含空格，链接必须以 `https://www.amap.com/dir/` 开头。
+**注意**：经纬度坐标不能包含空格，链接必须以 `https://www.amap.com/sso/dir?type=0&policy=10` 开头。
 
 ### `maps_distance` 距离测量类型说明
 - `type=0`：直线距离测量（仅用于粗略排序）
@@ -76,7 +76,6 @@ https://www.amap.com/dir/120.218850,30.239899/120.204373,30.263438
 **重要**：`origins` 和 `destination` 都只能传**单个坐标**，禁止批量测量多个目的地。
 
 ## 🚫 关键约束
-- **服务站场景下，绝对禁止使用 `maps_geo`** —— 即使名称看起来像普通地址（如"小米之家武汉光谷店"）
 - **`maps_around_search` 只调用一次，且 `radius` 必须指定** —— 优先用用户指定值，未指定时部署必须设为 `50000`
 - **禁止用 `maps_distance` 批量测量多个目的地** —— 必须分别为每个目的地单独调用
 - 所有坐标必须为 GCJ-02（高德坐标系），MCP 工具已兼容

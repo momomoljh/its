@@ -145,10 +145,11 @@ async def test_gaode_map():
 
     await run_mcp_call(
         mcp_instance=gaode_map_mcp,
-        tool_name="maps_around_search",  # (拉起地图页面)
+        tool_name="maps_schema_take_taxi",  # (拉起地图页面)
         tool_args={
-            "keywords": "服务站",
-            "location": "119.8824799,29.95931271",
+            "dname": "服务站",
+            "dlon": "119.8824799",
+            "dlat": "29.95931271",
         }
     )
 async def test_baidu_map():
@@ -186,8 +187,8 @@ async def test_baidu_map():
 async def main():
     # 任务 1
     # await test_bailian_search()
-    # await test_gaode_map()
-     await test_baidu_map()
+    await test_gaode_map()
+    # await test_baidu_map()
 
 if __name__ == '__main__':
     asyncio.run(main())

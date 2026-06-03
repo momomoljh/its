@@ -3,7 +3,6 @@ from agents.run import RunConfig
 
 from multi_agent.technical_agent import technical_agent
 from multi_agent.comprehensive_service_agent import comprehensive_service_agent
-from multi_agent.baidu_service_agent import comprehensive_service_agent
 from infrastructure.tools.mcp.mcp_servers import search_mcp_client, baidu_mcp_client
 
 from infrastructure.logging.logger import logger
