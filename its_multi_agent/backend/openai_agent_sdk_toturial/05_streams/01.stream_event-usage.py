@@ -22,7 +22,7 @@ from agents.items import ToolCallItem, ToolCallOutputItem, MessageOutputItem, Re
 
 # BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 # API_KEY =  "sk-9464965c0c1d4d95b509babec523d048"
-# MODEL_NAME = "qwen3.5-122b-a10b"
+# MODEL_NAME = "qwen3.5-flash"
 
 
 BASE_URL = "https://api.gptsapi.net/v1"

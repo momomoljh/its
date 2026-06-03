@@ -25,6 +25,8 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: Optional[str] = Field(default=None, description="openai API Key")
     OPENAI_BASE_URL: Optional[str] = Field(default=None, description="openai Base URL")
 
+    DEEPSEEK_API_KEY: Optional[str] = Field(default=None, description="deepseek API Key")
+    DEEPSEEK_BASE_URL: Optional[str] = Field(default=None, description="deepseek Base URL")
 
     # ==================== 模型配置 ====================
 
@@ -34,9 +36,12 @@ class Settings(BaseSettings):
     )
     SUB_MODEL_NAME: Optional[str] = Field(
         default="",
-        description="qwen3-max"
+        description="qwen3.6-flash"
     )
-
+    DEEPSEEK_MODEL_NAME: Optional[str] = Field(
+        default="null",
+        description="deepseek-v4-pro"
+    )
     # ==================== 数据库配置 ====================
 
     MYSQL_HOST: Optional[str] = Field(default="localhost", description="MySQL主机地址")
@@ -66,6 +71,11 @@ class Settings(BaseSettings):
         description="通义千问 DashScope API Key"
     )
 
+    # 通用搜索服务
+    FIRECRAWL_URL: Optional[str] = Field(
+        default=None,
+        description="联网搜索 API KEY"
+    )
     # 百度地图服务
     BAIDUMAP_AK: Optional[str] = Field(
         default=None,

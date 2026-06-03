@@ -2,7 +2,7 @@ import asyncio
 from typing import Dict
 import httpx
 from agents import function_tool
-from infrastructure.loggging.logger import logger
+from infrastructure.logging.logger import logger
 from config.settings import settings
 @function_tool
 async def query_knowledge(question: str) -> Dict:

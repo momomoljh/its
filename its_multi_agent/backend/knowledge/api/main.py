@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 from fastapi import FastAPI
-from api.router import router
+from api.routers import router
 def create_app():
     #创建实例
     app = FastAPI(title = "Knowledge API")

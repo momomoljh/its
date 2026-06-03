@@ -4,7 +4,7 @@ from agents import Agent, OpenAIChatCompletionsModel, SQLiteSession, Runner, set
 
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 API_KEY = "sk-9464965c0c1d4d95b509babec523d048"
-MODEL_NAME = "qwen3.5-122b-a10b"
+MODEL_NAME = "qwen3.5-flash"
 
 client = AsyncOpenAI(base_url=BASE_URL, api_key=API_KEY)
 set_tracing_disabled(disabled=True)

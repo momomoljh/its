@@ -93,7 +93,7 @@ class RetrivalService:
             md_metadata_title = md_metadata["title"]
             if not md_metadata_title and not md_metadata_title.strip():
                 continue
-            #jarcard算法 A 交 B / A 并 B
+            #                                                                                                                                                                                                       A 交 B / A 并 B
             user_query_char = set(user_query)
             mds_metadata_title_char = set(md_metadata_title)
             unique_char = user_query_char | mds_metadata_title_char
